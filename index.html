@@ -1,387 +1,485 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>✦ Fin del Primer Volumen ✦</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>✦ El Último Capítulo ✦</title>
 
 <style>
-
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    font-family:Georgia,serif;
+    background:#1c1713;
+    color:#3b2b20;
 }
 
 body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:
+    radial-gradient(circle at top,#4a3d31,#1b1713 70%);
+}
 
-min-height:100vh;
+/* ================= LIBRO ================= */
 
-display:flex;
-justify-content:center;
-align-items:center;
+#book{
+    width:min(900px,92vw);
+    height:min(650px,90vh);
 
-background:
-radial-gradient(circle at center,#342417 0%,#18100b 65%,#090705 100%);
+    background:
+    linear-gradient(to right,#d9c7a3 0%,#efe2bf 10%,#f5e8c7 50%,#efe2bf 90%,#d9c7a3 100%);
 
-padding:45px;
+    border-radius:8px;
 
-font-family:'Cormorant Garamond',serif;
+    box-shadow:
+    0 20px 60px rgba(0,0,0,.6),
+    inset 0 0 40px rgba(0,0,0,.2);
+
+    position:relative;
+    overflow:hidden;
+}
+
+/* desgaste */
+
+#book::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+    radial-gradient(circle at 20% 15%,rgba(255,255,255,.12),transparent 18%),
+    radial-gradient(circle at 80% 75%,rgba(0,0,0,.08),transparent 22%),
+    repeating-linear-gradient(
+        90deg,
+        transparent 0px,
+        transparent 4px,
+        rgba(0,0,0,.02) 5px,
+        transparent 6px
+    );
+
+    pointer-events:none;
+}
+
+#page{
+
+    position:absolute;
+    inset:40px;
+
+    border:1px solid rgba(90,65,40,.3);
+
+    padding:70px 70px 110px;
+
+    display:flex;
+    flex-direction:column;
+
+    justify-content:space-between;
+}
+
+.corner{
+    position:absolute;
+    width:25px;
+    height:25px;
+    border-color:#8b6c44;
+    opacity:.55;
+}
+
+.tl{
+    top:15px;
+    left:15px;
+    border-top:2px solid;
+    border-left:2px solid;
+}
+
+.tr{
+    top:15px;
+    right:15px;
+    border-top:2px solid;
+    border-right:2px solid;
+}
+
+.bl{
+    bottom:15px;
+    left:15px;
+    border-bottom:2px solid;
+    border-left:2px solid;
+}
+
+.br{
+    bottom:15px;
+    right:15px;
+    border-bottom:2px solid;
+    border-right:2px solid;
+}
+
+h1{
+
+    text-align:center;
+    letter-spacing:4px;
+    font-size:34px;
+    font-weight:normal;
+    color:#4b3420;
+}
+
+.subtitle{
+
+    text-align:center;
+    margin-top:12px;
+    font-size:16px;
+    letter-spacing:3px;
+    opacity:.7;
+}
+
+.content{
+
+    margin-top:40px;
+
+    font-size:21px;
+
+    line-height:2.05;
+
+    text-align:justify;
+}
+
+.content p{
+
+    margin-bottom:28px;
+    text-indent:45px;
+}
+
+.signature{
+
+    text-align:right;
+    margin-top:35px;
+
+    font-size:23px;
+}
+
+/* ================= SELLO ================= */
+
+#wax{
+
+    width:92px;
+    height:92px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(circle at 30% 30%,#d64242,#7d0d0d);
+
+    margin:0 auto;
+
+    cursor:pointer;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    color:#f8e7d4;
+
+    font-size:34px;
+
+    box-shadow:
+    inset 0 4px 8px rgba(255,255,255,.2),
+    inset 0 -6px 12px rgba(0,0,0,.35),
+    0 12px 30px rgba(0,0,0,.35);
+
+    transition:.4s;
+}
+
+#wax:hover{
+
+    transform:scale(1.06) rotate(4deg);
+}
+
+#wax:active{
+
+    transform:scale(.95);
+}
+
+.note{
+
+    margin-top:16px;
+
+    text-align:center;
+
+    font-size:13px;
+
+    letter-spacing:2px;
+
+    opacity:.6;
+}
+
+/* ================= PANTALLA FINAL ================= */
+
+#ending{
+
+    position:fixed;
+    inset:0;
+
+    background:#000;
+
+    color:#f7f1df;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    flex-direction:column;
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:2.5s;
+}
+
+#ending.show{
+
+    opacity:1;
+    visibility:visible;
+}
+
+#typewriter{
+
+    width:min(900px,90vw);
+
+    font-size:28px;
+
+    line-height:2;
+
+    text-align:center;
+
+    white-space:pre-wrap;
+}
+
+.cursor{
+
+    display:inline-block;
+
+    animation:blink .8s infinite;
+}
+
+@keyframes blink{
+
+    50%{
+        opacity:0;
+    }
+}
+
+.fadeBook{
+
+    animation:fadeBook 2.8s forwards;
+}
+
+@keyframes fadeBook{
+
+    to{
+
+        opacity:0;
+        transform:scale(.98);
+        filter:blur(4px);
+    }
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:700px){
+
+#page{
+
+padding:35px 28px 90px;
+
+inset:18px;
 
 }
 
-.page{
-
-width:min(900px,100%);
-
-min-height:1100px;
-
-position:relative;
-
-background:
-
-linear-gradient(
-180deg,
-#fcf8ee,
-#f4ead7
-);
-
-border:2px solid #c8aa70;
-
-box-shadow:
-
-0 0 80px rgba(0,0,0,.6),
-inset 0 0 90px rgba(130,100,55,.12);
-
-display:flex;
-
-flex-direction:column;
-
-align-items:center;
-
-justify-content:center;
-
-overflow:hidden;
-
-}
-
-.page::before{
-
-content:"";
-
-position:absolute;
-
-top:20px;
-left:20px;
-right:20px;
-bottom:20px;
-
-border:1px solid rgba(150,115,65,.35);
-
-}
-
-.ornament{
-
-position:absolute;
-
-top:55px;
-
-font-size:25px;
-
-letter-spacing:12px;
-
-color:#a47c49;
-
-}
-
-.collection{
-
-position:absolute;
-
-top:120px;
-
-font-family:'Cinzel',serif;
-
-font-size:15px;
-
-letter-spacing:6px;
-
-color:#80603b;
-
-}
-
-.title{
-
-font-family:'Cinzel',serif;
-
-font-size:48px;
-
-letter-spacing:8px;
-
-text-align:center;
-
-color:#49311d;
-
-z-index:2;
-
-}
-
-.line{
-
-width:230px;
-
-height:1px;
-
-background:#b8955d;
-
-margin:35px 0;
-
-}
-
-.quote{
-
-max-width:600px;
-
-text-align:center;
-
+h1{
 font-size:27px;
-
-line-height:1.8;
-
-font-style:italic;
-
-color:#65482a;
-
-z-index:2;
-
 }
 
-.seal{
-
-margin-top:70px;
-
-width:150px;
-
-height:150px;
-
-border-radius:50%;
-
-background:
-
-radial-gradient(circle,#b64b4b,#651818);
-
-border:6px solid #d7b878;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-font-size:55px;
-
-color:#f8ecd5;
-
-box-shadow:
-
-0 15px 35px rgba(0,0,0,.35);
-
-transition:.4s;
-
-z-index:2;
-
+.content{
+font-size:18px;
 }
 
-.seal:hover{
-
-transform:scale(1.08) rotate(5deg);
-
+.signature{
+font-size:20px;
 }
 
-.footer{
-
-position:absolute;
-
-bottom:85px;
-
-font-family:'Cinzel',serif;
-
-font-size:14px;
-
-letter-spacing:4px;
-
-color:#795936;
-
+#typewriter{
+font-size:22px;
 }
-
-.page-number{
-
-position:absolute;
-
-bottom:35px;
-
-right:45px;
-
-font-size:16px;
-
-color:#765535;
-
-letter-spacing:3px;
 
 }
 
 </style>
-
 </head>
 
 <body>
 
-<div class="page">
+<div id="book">
 
-<div class="ornament">
+<div class="corner tl"></div>
+<div class="corner tr"></div>
+<div class="corner bl"></div>
+<div class="corner br"></div>
 
-✦ ❦ ✦ ❦ ✦
+<div id="page">
+
+<div>
+
+<h1>✦ FIN DEL PRIMER TOMO ✦</h1>
+
+<div class="subtitle">
+PARA TI MI VIDA 
+</div>
+
+<div class="content">
+
+<p>
+
+Este libro ha guardado cada palabra que quise regalarte, pero siento que mi corazón ya no cabe entre sus páginas.
+
+Por eso, mañana dejaré este viejo libro descansar...
+
+Porque quiero encontrarte de una forma nueva.
+
+Con una carta.
+
+Más cercana.
+
+Más íntima.
+
+Y escrita solo para ti, mi amor.
+
+Hasta mañana... ❤️
+</p>
 
 </div>
 
-<div class="collection">
-
-COLECCIÓN DE MANUSCRITOS
+<div class="signature">
+— VALERIA PETRO VILLAZÓN 
+</div>
 
 </div>
 
-<div class="title">
+<div>
 
-✦ FIN DEL PRIMER VOLUMEN ✦
-
-</div>
-
-<div class="line"></div>
-
-<div class="quote">
-
-"Toda historia merece descansar entre sus páginas antes de abrir el camino hacia un nuevo comienzo."
-
-</div>
-
-<div class="seal">
-
-❦
-
-</div>
-<div class="final-text">
-
+<div id="wax">
 ✦
+</div>
 
-<br><br>
-
-EL VOLUMEN HA SIDO CERRADO
-
-<br><br>
-
-<span>
-Las páginas quedan en silencio,
-pero la historia permanece guardada
-en la memoria de quienes la recorrieron.
-</span>
-
-<br><br>
-
-✦
+<div class="note">
+PRESIONA EL SELLO PARA CERRAR EL LIBRO
+</div>
 
 </div>
 
-
-<div class="footer">
-
-ESTA EDICIÓN QUEDA OFICIALMENTE CONCLUIDA
+</div>
 
 </div>
 
+<div id="ending">
 
-<div class="page-number">
+<div id="typewriter"></div>
 
-❦ &nbsp; FIN &nbsp; ❦
-
-</div>
-
+      <span class="cursor">|</span>
 
 </div>
 
+<script>
 
-<style>
+const seal = document.getElementById("wax");
+const book = document.getElementById("book");
+const ending = document.getElementById("ending");
+const writer = document.getElementById("typewriter");
 
-.final-text{
+const finalMessage = `[MENSAJE FINAL]`;
 
-position:absolute;
+let started = false;
 
-bottom:240px;
+seal.addEventListener("click", ()=>{
 
-max-width:600px;
+    if(started) return;
+    started = true;
 
-text-align:center;
+    book.classList.add("fadeBook");
 
-font-family:'Cormorant Garamond',serif;
+    setTimeout(()=>{
 
-font-size:24px;
+        ending.classList.add("show");
 
-line-height:1.8;
+        setTimeout(()=>{
+            typeWriter(finalMessage);
+        },900);
 
-color:#684a2b;
+    },2200);
 
-opacity:.9;
+});
 
-z-index:2;
+function typeWriter(text){
+
+    writer.innerHTML="";
+
+    let i=0;
+
+    function write(){
+
+        if(i < text.length){
+
+            const c = text.charAt(i);
+
+            if(c === "\n"){
+
+                writer.innerHTML += "<br>";
+
+            }else{
+
+                writer.innerHTML += c;
+
+            }
+
+            i++;
+
+            let speed = 35;
+
+            if(c==="." || c==="!" || c==="?" || c===":"){
+                speed = 300;
+            }else if(c===","){
+                speed = 120;
+            }
+
+            setTimeout(write,speed);
+
+        }
+
+    }
+
+    write();
 
 }
 
+/* Evita seleccionar texto accidentalmente */
 
-.final-text span{
+document.addEventListener("selectstart",e=>{
+    e.preventDefault();
+});
 
-font-size:22px;
+/* Evita arrastrar elementos */
 
-font-style:italic;
+document.addEventListener("dragstart",e=>{
+    e.preventDefault();
+});
 
-}
-
-
-@keyframes sealPulse{
-
-0%,100%{
-
-box-shadow:
-0 15px 35px rgba(0,0,0,.35);
-
-}
-
-50%{
-
-box-shadow:
-0 15px 45px rgba(160,110,60,.45);
-
-}
-
-}
-
-
-.seal{
-
-animation:sealPulse 4s infinite;
-
-}
-
-
-</style>
-
+</script>
 
 </body>
-
-</html>
+</html> 
